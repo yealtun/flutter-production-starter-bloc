@@ -13,7 +13,9 @@ void main() {
 
   setUp(() {
     mockAuthCubit = MockAuthCubit();
-    when(() => mockAuthCubit.state).thenReturn(const AuthState.unauthenticated());
+    when(
+      () => mockAuthCubit.state,
+    ).thenReturn(const AuthState.unauthenticated());
     when(() => mockAuthCubit.stream).thenAnswer((_) => const Stream.empty());
   });
 
@@ -28,8 +30,14 @@ void main() {
     );
 
     await tester.pumpAndSettle();
-    expect(find.text('Login'), findsAtLeastNWidgets(1)); // AppBar title and/or button
-    expect(find.byType(TextFormField), findsNWidgets(2)); // Email and password fields
+    expect(
+      find.text('Login'),
+      findsAtLeastNWidgets(1),
+    ); // AppBar title and/or button
+    expect(
+      find.byType(TextFormField),
+      findsNWidgets(2),
+    ); // Email and password fields
     expect(find.byType(ElevatedButton), findsOneWidget); // Login button
   });
 }
