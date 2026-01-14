@@ -26,6 +26,9 @@ void main() {
     mockAuthRepository = MockAuthRepository();
     mockLoginUseCase = MockLoginUseCase();
     mockRefreshTokenUseCase = MockRefreshTokenUseCase();
+    // Setup default mock for getCurrentToken() which is called in AuthCubit constructor
+    when(() => mockAuthRepository.getCurrentToken())
+        .thenAnswer((_) async => const Success(null));
     authCubit = AuthCubit(
       mockLoginUseCase,
       mockRefreshTokenUseCase,
@@ -37,8 +40,11 @@ void main() {
     authCubit.close();
   });
 
-  test('initial state should be initial', () {
-    expect(authCubit.state, const AuthState.initial());
+  test('initial state should transition to unauthenticated after checking auth status', () async {
+    // The constructor calls _checkAuthStatus() which is async
+    // Wait for the async operation to complete
+    await Future.delayed(const Duration(milliseconds: 100));
+    expect(authCubit.state, const AuthState.unauthenticated());
   });
 
   blocTest<AuthCubit, AuthState>(
