@@ -46,7 +46,7 @@ void main() {
     () async {
       // The constructor calls _checkAuthStatus() which is async
       // Wait for the async operation to complete
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future<void>.delayed(const Duration(milliseconds: 100));
       expect(authCubit.state, const AuthState.unauthenticated());
     },
   );
