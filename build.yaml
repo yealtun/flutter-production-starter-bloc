@@ -1,0 +1,14 @@
+targets:
+  $default:
+    builders:
+      freezed:
+        enabled: true
+      json_serializable:
+        enabled: true
+        options:
+          any_map: false
+          checked: false
+          explicit_to_json: false
+          field_rename: none
+          generic_argument_factories: false
+          include_if_null: true
