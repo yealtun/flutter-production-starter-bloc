@@ -49,9 +49,7 @@ class _AiDemoScreenState extends State<AiDemoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('AI Demo'),
-      ),
+      appBar: AppBar(title: const Text('AI Demo')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -113,10 +111,7 @@ class _AiDemoScreenState extends State<AiDemoScreen> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Text(
-                        _error!,
-                        style: const TextStyle(color: Colors.red),
-                      ),
+                      Text(_error!, style: const TextStyle(color: Colors.red)),
                     ],
                   ),
                 ),

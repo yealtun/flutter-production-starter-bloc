@@ -20,9 +20,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider.value(value: getIt<AuthCubit>()),
-      ],
+      providers: [BlocProvider.value(value: getIt<AuthCubit>())],
       child: MaterialApp.router(
         title: 'Flutter Production Starter BLoC',
         routerConfig: _createRouter(),
@@ -64,10 +62,7 @@ GoRouter _createRouter() {
       return null;
     },
     routes: [
-      GoRoute(
-        path: '/login',
-        builder: (context, state) => const LoginScreen(),
-      ),
+      GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       GoRoute(
         path: '/feed',
         builder: (context, state) => BlocProvider(
@@ -88,9 +83,7 @@ GoRouter _createRouter() {
       ),
       GoRoute(
         path: '/ai-demo',
-        builder: (context, state) => AiDemoScreen(
-          aiClient: getIt<AiClient>(),
-        ),
+        builder: (context, state) => AiDemoScreen(aiClient: getIt<AiClient>()),
       ),
     ],
   );

@@ -40,10 +40,7 @@ class FeedCubit extends Cubit<FeedState> {
           emit(const FeedState.empty());
         } else {
           _currentPage = meta.page;
-          emit(FeedState.success(
-            List.from(_allItems),
-            meta,
-          ));
+          emit(FeedState.success(List.from(_allItems), meta));
         }
       },
       onFailure: (error) {

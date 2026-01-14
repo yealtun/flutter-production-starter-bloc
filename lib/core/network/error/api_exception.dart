@@ -10,26 +10,34 @@ abstract class ApiException implements Exception {
 
 /// Authentication failure (401)
 class AuthFailure extends ApiException {
-  const AuthFailure(
-      [super.message = 'Authentication failed', super.statusCode = 401]);
+  const AuthFailure([
+    super.message = 'Authentication failed',
+    super.statusCode = 401,
+  ]);
 }
 
 /// Permission failure (403)
 class PermissionFailure extends ApiException {
-  const PermissionFailure(
-      [super.message = 'Permission denied', super.statusCode = 403]);
+  const PermissionFailure([
+    super.message = 'Permission denied',
+    super.statusCode = 403,
+  ]);
 }
 
 /// Not found failure (404)
 class NotFoundFailure extends ApiException {
-  const NotFoundFailure(
-      [super.message = 'Resource not found', super.statusCode = 404]);
+  const NotFoundFailure([
+    super.message = 'Resource not found',
+    super.statusCode = 404,
+  ]);
 }
 
 /// Conflict failure (409)
 class ConflictFailure extends ApiException {
-  const ConflictFailure(
-      [super.message = 'Resource conflict', super.statusCode = 409]);
+  const ConflictFailure([
+    super.message = 'Resource conflict',
+    super.statusCode = 409,
+  ]);
 }
 
 /// Validation failure (422)

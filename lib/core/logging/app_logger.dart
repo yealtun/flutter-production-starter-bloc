@@ -2,16 +2,17 @@ import 'package:logger/logger.dart';
 
 /// Application logger wrapper with levels and request-id support
 class AppLogger {
-  AppLogger() : _logger = Logger(
-          printer: PrettyPrinter(
-            methodCount: 0,
-            errorMethodCount: 8,
-            lineLength: 120,
-            colors: true,
-            printEmojis: true,
-            dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
-          ),
-        );
+  AppLogger()
+    : _logger = Logger(
+        printer: PrettyPrinter(
+          methodCount: 0,
+          errorMethodCount: 8,
+          lineLength: 120,
+          colors: true,
+          printEmojis: true,
+          dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
+        ),
+      );
 
   final Logger _logger;
 

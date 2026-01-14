@@ -44,25 +44,20 @@ void main() {
   blocTest<AuthCubit, AuthState>(
     'emits [loading, authenticated] when login succeeds',
     build: () {
-      when(() => mockAuthRepository.getCurrentToken())
-          .thenAnswer((_) async => const Success(null));
-      when(() => mockLoginUseCase(any(), any()))
-          .thenAnswer((_) async => const Success(
-                Token(
-                  accessToken: 'token',
-                  refreshToken: 'refresh',
-                ),
-              ));
+      when(
+        () => mockAuthRepository.getCurrentToken(),
+      ).thenAnswer((_) async => const Success(null));
+      when(() => mockLoginUseCase(any(), any())).thenAnswer(
+        (_) async =>
+            const Success(Token(accessToken: 'token', refreshToken: 'refresh')),
+      );
       return authCubit;
     },
     act: (cubit) => cubit.login('test@example.com', 'password'),
     expect: () => [
       const AuthState.loading(),
       const AuthState.authenticated(
-        Token(
-          accessToken: 'token',
-          refreshToken: 'refresh',
-        ),
+        Token(accessToken: 'token', refreshToken: 'refresh'),
       ),
     ],
   );
@@ -70,10 +65,12 @@ void main() {
   blocTest<AuthCubit, AuthState>(
     'emits [loading, error] when login fails',
     build: () {
-      when(() => mockAuthRepository.getCurrentToken())
-          .thenAnswer((_) async => const Success(null));
-      when(() => mockLoginUseCase(any(), any()))
-          .thenAnswer((_) async => const Failure(AuthFailure()));
+      when(
+        () => mockAuthRepository.getCurrentToken(),
+      ).thenAnswer((_) async => const Success(null));
+      when(
+        () => mockLoginUseCase(any(), any()),
+      ).thenAnswer((_) async => const Failure(AuthFailure()));
       return authCubit;
     },
     act: (cubit) => cubit.login('test@example.com', 'password'),

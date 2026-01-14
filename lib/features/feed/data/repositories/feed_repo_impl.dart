@@ -29,7 +29,9 @@ class FeedRepositoryImpl implements FeedRepository {
       // Calculate pagination metadata
       // Note: jsonplaceholder doesn't provide total count in headers,
       // so we'll estimate based on response
-      final total = items.length < limit ? (page - 1) * limit + items.length : page * limit + 1;
+      final total = items.length < limit
+          ? (page - 1) * limit + items.length
+          : page * limit + 1;
       final totalPages = (total / limit).ceil();
 
       final meta = PaginationMeta(

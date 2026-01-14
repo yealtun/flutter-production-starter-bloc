@@ -10,11 +10,7 @@ class Token {
   final String refreshToken;
   final int? expiresIn;
 
-  Token copyWith({
-    String? accessToken,
-    String? refreshToken,
-    int? expiresIn,
-  }) {
+  Token copyWith({String? accessToken, String? refreshToken, int? expiresIn}) {
     return Token(
       accessToken: accessToken ?? this.accessToken,
       refreshToken: refreshToken ?? this.refreshToken,

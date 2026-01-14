@@ -22,8 +22,10 @@ class SdkWrapper {
   }
 
   /// Track an event
-  Future<void> trackEvent(String eventName,
-      {Map<String, dynamic>? properties}) async {
+  Future<void> trackEvent(
+    String eventName, {
+    Map<String, dynamic>? properties,
+  }) async {
     if (!_isInitialized) {
       throw StateError('SDK not initialized. Call init() first.');
     }

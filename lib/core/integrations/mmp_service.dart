@@ -6,10 +6,7 @@ abstract class MmpService {
   Future<void> initialize(String apiKey);
 
   /// Track an event
-  Future<void> trackEvent(
-    String eventName, {
-    Map<String, dynamic>? properties,
-  });
+  Future<void> trackEvent(String eventName, {Map<String, dynamic>? properties});
 
   /// Set user attributes
   Future<void> setUserAttributes(Map<String, dynamic> attributes);

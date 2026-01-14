@@ -4,8 +4,11 @@ import '../../data/sdk_wrapper.dart';
 
 /// SDK demo screen
 class SdkDemoScreen extends StatefulWidget {
-  const SdkDemoScreen(
-      {super.key, required this.sdkWrapper, required this.logger});
+  const SdkDemoScreen({
+    super.key,
+    required this.sdkWrapper,
+    required this.logger,
+  });
 
   final SdkWrapper sdkWrapper;
   final AppLogger logger;
@@ -73,9 +76,7 @@ class _SdkDemoScreenState extends State<SdkDemoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SDK Demo'),
-      ),
+      appBar: AppBar(title: const Text('SDK Demo')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

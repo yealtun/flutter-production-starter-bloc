@@ -11,7 +11,11 @@ ApiException mapDioError(DioException error) {
       return const NetworkFailure('Connection timeout or error');
 
     case DioExceptionType.badResponse:
-      return _mapStatusCode(error.response?.statusCode, error.response?.data, error);
+      return _mapStatusCode(
+        error.response?.statusCode,
+        error.response?.data,
+        error,
+      );
 
     case DioExceptionType.cancel:
       return const NetworkFailure('Request cancelled');
@@ -22,7 +26,11 @@ ApiException mapDioError(DioException error) {
   }
 }
 
-ApiException _mapStatusCode(int? statusCode, dynamic data, DioException? error) {
+ApiException _mapStatusCode(
+  int? statusCode,
+  dynamic data,
+  DioException? error,
+) {
   if (statusCode == null) {
     return const NetworkFailure('Unknown error');
   }
@@ -56,9 +64,9 @@ ApiException _mapStatusCode(int? statusCode, dynamic data, DioException? error) 
 
 String _extractMessage(dynamic data) {
   if (data is Map<String, dynamic>) {
-    return data['message'] as String? ?? 
-           data['error'] as String? ?? 
-           'An error occurred';
+    return data['message'] as String? ??
+        data['error'] as String? ??
+        'An error occurred';
   }
   if (data is String) {
     return data;
@@ -73,7 +81,9 @@ Map<String, List<String>> _extractFieldErrors(dynamic data) {
       return errors.map(
         (key, value) => MapEntry(
           key,
-          value is List ? value.map((e) => e.toString()).toList() : [value.toString()],
+          value is List
+              ? value.map((e) => e.toString()).toList()
+              : [value.toString()],
         ),
       );
     }

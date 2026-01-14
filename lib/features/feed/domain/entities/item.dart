@@ -12,12 +12,7 @@ class Item {
   final String title;
   final String body;
 
-  Item copyWith({
-    int? id,
-    int? userId,
-    String? title,
-    String? body,
-  }) {
+  Item copyWith({int? id, int? userId, String? title, String? body}) {
     return Item(
       id: id ?? this.id,
       userId: userId ?? this.userId,

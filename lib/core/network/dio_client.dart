@@ -10,11 +10,9 @@ import '../storage/local_storage.dart';
 
 /// Dio HTTP client with interceptors and default configuration
 class DioClient {
-  DioClient({
-    required LocalStorage storage,
-    required AppLogger logger,
-  })  : _storage = storage,
-        _logger = logger {
+  DioClient({required LocalStorage storage, required AppLogger logger})
+    : _storage = storage,
+      _logger = logger {
     _dio = Dio(
       BaseOptions(
         baseUrl: Env.apiBaseUrl,

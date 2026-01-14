@@ -31,7 +31,8 @@ class RetryInterceptor extends Interceptor {
 
     // Don't retry on certain status codes
     final statusCode = err.response?.statusCode;
-    if (statusCode != null && (statusCode == 401 || statusCode == 403 || statusCode == 404)) {
+    if (statusCode != null &&
+        (statusCode == 401 || statusCode == 403 || statusCode == 404)) {
       handler.next(err);
       return;
     }

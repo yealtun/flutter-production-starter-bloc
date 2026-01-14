@@ -18,10 +18,7 @@ class LoggingInterceptor extends Interceptor {
     }
 
     final requestId = options.headers['X-Request-Id'] as String? ?? 'unknown';
-    _logger.d(
-      '→ ${options.method} ${options.uri}',
-      requestId: requestId,
-    );
+    _logger.d('→ ${options.method} ${options.uri}', requestId: requestId);
 
     if (options.data != null && kDebugMode) {
       final sanitizedData = _sanitizeData(options.data);
@@ -33,7 +30,9 @@ class LoggingInterceptor extends Interceptor {
 
   @override
   void onResponse(
-      Response<dynamic> response, ResponseInterceptorHandler handler) {
+    Response<dynamic> response,
+    ResponseInterceptorHandler handler,
+  ) {
     if (!Env.isDebugMode) {
       handler.next(response);
       return;

@@ -26,21 +26,21 @@ extension ResultExtension<T> on Result<T> {
 
   /// Returns the value if [Success], otherwise returns `null`.
   T? get valueOrNull => switch (this) {
-        Success<T>(:final value) => value,
-        Failure<T>() => null,
-      };
+    Success<T>(:final value) => value,
+    Failure<T>() => null,
+  };
 
   /// Returns the error if [Failure], otherwise returns `null`.
   Exception? get errorOrNull => switch (this) {
-        Success<T>() => null,
-        Failure<T>(:final error) => error,
-      };
+    Success<T>() => null,
+    Failure<T>(:final error) => error,
+  };
 
   /// Maps the value of a [Success] result using the provided function.
   Result<R> map<R>(R Function(T value) mapper) => switch (this) {
-        Success<T>(:final value) => Success(mapper(value)),
-        Failure<T>(:final error) => Failure<R>(error),
-      };
+    Success<T>(:final value) => Success(mapper(value)),
+    Failure<T>(:final error) => Failure<R>(error),
+  };
 
   /// Maps the error of a [Failure] result using the provided function.
   Result<T> mapError(Exception Function(Exception error) mapper) =>
@@ -53,9 +53,8 @@ extension ResultExtension<T> on Result<T> {
   R fold<R>({
     required R Function(T value) onSuccess,
     required R Function(Exception error) onFailure,
-  }) =>
-      switch (this) {
-        Success<T>(:final value) => onSuccess(value),
-        Failure<T>(:final error) => onFailure(error),
-      };
+  }) => switch (this) {
+    Success<T>(:final value) => onSuccess(value),
+    Failure<T>(:final error) => onFailure(error),
+  };
 }

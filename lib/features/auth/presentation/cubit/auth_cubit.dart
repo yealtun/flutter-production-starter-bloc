@@ -8,11 +8,8 @@ import 'auth_state.dart';
 
 /// Cubit for managing authentication state
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(
-    this._loginUseCase,
-    this._refreshTokenUseCase,
-    this._authRepository,
-  ) : super(const AuthState.initial()) {
+  AuthCubit(this._loginUseCase, this._refreshTokenUseCase, this._authRepository)
+    : super(const AuthState.initial()) {
     _checkAuthStatus();
   }
 

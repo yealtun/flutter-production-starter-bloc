@@ -16,20 +16,10 @@ class SubscriptionProduct {
 }
 
 /// Purchase result
-enum PurchaseResult {
-  success,
-  cancelled,
-  error,
-  pending,
-}
+enum PurchaseResult { success, cancelled, error, pending }
 
 /// Subscription status
-enum SubscriptionStatus {
-  active,
-  expired,
-  cancelled,
-  unknown,
-}
+enum SubscriptionStatus { active, expired, cancelled, unknown }
 
 /// Paywall service interface
 /// This is a placeholder interface demonstrating paywall integration pattern

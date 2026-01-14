@@ -75,10 +75,9 @@ class AuthRepositoryImpl implements AuthRepository {
         return const Success(null);
       }
 
-      return Success(Token(
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-      ));
+      return Success(
+        Token(accessToken: accessToken, refreshToken: refreshToken),
+      );
     } catch (e) {
       return Failure(NetworkFailure(e.toString()));
     }

@@ -21,11 +21,6 @@ class ItemDto with _$ItemDto {
 /// Extension to convert DTO to domain entity
 extension ItemDtoX on ItemDto {
   Item toDomain() {
-    return Item(
-      id: id,
-      userId: userId,
-      title: title,
-      body: body,
-    );
+    return Item(id: id, userId: userId, title: title, body: body);
   }
 }

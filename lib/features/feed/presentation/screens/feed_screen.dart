@@ -82,7 +82,8 @@ class _FeedScreenState extends State<FeedScreen> {
             const Text('No items found'),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () => context.read<FeedCubit>().loadItems(refresh: true),
+              onPressed: () =>
+                  context.read<FeedCubit>().loadItems(refresh: true),
               child: const Text('Retry'),
             ),
           ],
@@ -97,7 +98,8 @@ class _FeedScreenState extends State<FeedScreen> {
             Text('Error: ${error.message}'),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () => context.read<FeedCubit>().loadItems(refresh: true),
+              onPressed: () =>
+                  context.read<FeedCubit>().loadItems(refresh: true),
               child: const Text('Retry'),
             ),
           ],

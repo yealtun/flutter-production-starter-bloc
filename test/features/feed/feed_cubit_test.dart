@@ -31,60 +31,59 @@ void main() {
   blocTest<FeedCubit, FeedState>(
     'emits [loading, success] when items are loaded',
     build: () {
-      when(() => mockGetItemsUseCase(page: any(named: 'page'), limit: any(named: 'limit')))
-          .thenAnswer((_) async => const Success((
-                [
-                  Item(id: 1, title: 'Test', body: 'Body'),
-                ],
-                PaginationMeta(
-                  page: 1,
-                  limit: 10,
-                  total: 1,
-                  totalPages: 1,
-                ),
-              )));
+      when(
+        () => mockGetItemsUseCase(
+          page: any(named: 'page'),
+          limit: any(named: 'limit'),
+        ),
+      ).thenAnswer(
+        (_) async => const Success((
+          [Item(id: 1, title: 'Test', body: 'Body')],
+          PaginationMeta(page: 1, limit: 10, total: 1, totalPages: 1),
+        )),
+      );
       return feedCubit;
     },
     act: (cubit) => cubit.loadItems(),
     expect: () => [
-      const FeedState.success(
-        [Item(id: 1, title: 'Test', body: 'Body')],
-        PaginationMeta(page: 1, limit: 10, total: 1, totalPages: 1),
-      ),
+      const FeedState.success([
+        Item(id: 1, title: 'Test', body: 'Body'),
+      ], PaginationMeta(page: 1, limit: 10, total: 1, totalPages: 1)),
     ],
   );
 
   blocTest<FeedCubit, FeedState>(
     'emits [loading, empty] when no items are returned',
     build: () {
-      when(() => mockGetItemsUseCase(page: any(named: 'page'), limit: any(named: 'limit')))
-          .thenAnswer((_) async => const Success((
-                <Item>[],
-                PaginationMeta(
-                  page: 1,
-                  limit: 10,
-                  total: 0,
-                  totalPages: 0,
-                ),
-              )));
+      when(
+        () => mockGetItemsUseCase(
+          page: any(named: 'page'),
+          limit: any(named: 'limit'),
+        ),
+      ).thenAnswer(
+        (_) async => const Success((
+          <Item>[],
+          PaginationMeta(page: 1, limit: 10, total: 0, totalPages: 0),
+        )),
+      );
       return feedCubit;
     },
     act: (cubit) => cubit.loadItems(),
-    expect: () => [
-      const FeedState.empty(),
-    ],
+    expect: () => [const FeedState.empty()],
   );
 
   blocTest<FeedCubit, FeedState>(
     'emits [loading, error] when loading fails',
     build: () {
-      when(() => mockGetItemsUseCase(page: any(named: 'page'), limit: any(named: 'limit')))
-          .thenAnswer((_) async => const Failure(NetworkFailure()));
+      when(
+        () => mockGetItemsUseCase(
+          page: any(named: 'page'),
+          limit: any(named: 'limit'),
+        ),
+      ).thenAnswer((_) async => const Failure(NetworkFailure()));
       return feedCubit;
     },
     act: (cubit) => cubit.loadItems(),
-    expect: () => [
-      const FeedState.error(NetworkFailure()),
-    ],
+    expect: () => [const FeedState.error(NetworkFailure())],
   );
 }

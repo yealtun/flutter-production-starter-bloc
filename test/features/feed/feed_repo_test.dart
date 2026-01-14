@@ -9,6 +9,7 @@ import 'package:flutter_production_starter_bloc/features/feed/data/repositories/
 import 'package:flutter_production_starter_bloc/features/feed/domain/entities/item.dart';
 
 class MockFeedRemoteDataSource extends Mock implements FeedRemoteDataSource {}
+
 class MockDio extends Mock implements Dio {}
 
 void main() {
@@ -24,8 +25,9 @@ void main() {
 
   group('getItems', () {
     test('should return items with pagination metadata on success', () async {
-      when(() => mockRemoteDataSource.getItems(page: 1, limit: 10))
-          .thenAnswer((_) async => []);
+      when(
+        () => mockRemoteDataSource.getItems(page: 1, limit: 10),
+      ).thenAnswer((_) async => []);
 
       final result = await repository.getItems(page: 1, limit: 10);
 
@@ -40,11 +42,12 @@ void main() {
     });
 
     test('should return failure on error', () async {
-      when(() => mockRemoteDataSource.getItems(page: 1, limit: 10))
-          .thenThrow(DioException(
-            requestOptions: RequestOptions(path: '/test'),
-            type: DioExceptionType.connectionTimeout,
-          ));
+      when(() => mockRemoteDataSource.getItems(page: 1, limit: 10)).thenThrow(
+        DioException(
+          requestOptions: RequestOptions(path: '/test'),
+          type: DioExceptionType.connectionTimeout,
+        ),
+      );
 
       final result = await repository.getItems(page: 1, limit: 10);
 

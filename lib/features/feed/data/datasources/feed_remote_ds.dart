@@ -13,14 +13,13 @@ class FeedRemoteDataSourceImpl implements FeedRemoteDataSource {
   final Dio _dio;
 
   @override
-  Future<List<ItemDto>> getItems(
-      {required int page, required int limit}) async {
+  Future<List<ItemDto>> getItems({
+    required int page,
+    required int limit,
+  }) async {
     final response = await _dio.get<List<dynamic>>(
       '/posts',
-      queryParameters: {
-        '_page': page,
-        '_limit': limit,
-      },
+      queryParameters: {'_page': page, '_limit': limit},
     );
 
     if (response.data is List) {
